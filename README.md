@@ -43,7 +43,7 @@ To run the code,
 
 ```bash
 git clone https://github.com/BruceWangyq/fulhaus-test.git
-cd FE
+cd BE
 ```
 
 Add Environmen Variables
