@@ -64,26 +64,31 @@ export default async function Home() {
   const productsData = await getProductsData()
 
   return (
-    <main className="w-full">
-      <div className="flex">
-        <Image
-          src="/images/hero.png"
-          alt="Picture of the author"
-          width={320}
-          height={1080}
-        />
-        <div className="grid grid-cols-3 gap-10">
-          {productsData.map((product: Product) => (
-            <div key={product._id}>
-              <ProductCard
-                imgPRM={product.imageURLs[0]}
-                imgSID={product.imageURLs[2]}
-                productName={product.fulhausProductName}
-                prize={product.retailPrice}
-              />
-            </div>
-          ))}
-        </div>
+    <main className="flex h-screen max-w-full items-center justify-center">
+      <Image
+        src="/sofa.jpg"
+        alt="sofa"
+        width={420}
+        height={900}
+        className=" 
+          h-full
+          w-1/3
+          object-cover
+          object-right
+          p-6"
+      />
+
+      <div className="grid h-full w-2/3 grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-3">
+        {productsData.map((product: Product) => (
+          <div key={product._id}>
+            <ProductCard
+              imgPRM={product.imageURLs[0]}
+              imgSID={product.imageURLs[2]}
+              productName={product.fulhausProductName}
+              prize={product.retailPrice}
+            />
+          </div>
+        ))}
       </div>
     </main>
   )
