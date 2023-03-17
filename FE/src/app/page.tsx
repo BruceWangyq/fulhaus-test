@@ -1,9 +1,7 @@
 import Image from "next/image"
 import { Inter } from "next/font/google"
-import styles from "./page.module.css"
-import axios from "axios"
-import { useEffect, useState } from "react"
 import ProductCard from "@/components/ProductCard"
+import Cart from "@/components/Cart"
 
 const inter = Inter({ subsets: ["latin"] })
 export interface FulhausCategory {
@@ -19,6 +17,8 @@ export interface Vendor {
 export interface Product {
   _id: string
   imageURLs: string[]
+  imgPRM?: string
+  imgSID?: string
   lifeStyleImageURLs: string[]
   weight: number
   length: number
@@ -41,6 +41,7 @@ export interface Product {
   fulhausDescription: string
   rentalPrice: number
   orderCurrency: string
+  key: string
 }
 
 const getProductsData = async (): Promise<Product[]> => {
@@ -71,25 +72,28 @@ export default async function Home() {
         width={420}
         height={900}
         className=" 
-          h-full
-          w-1/3
-          object-cover
-          object-right
-          p-6"
+        h-full
+        w-1/3
+        object-cover
+        object-right
+        p-6"
       />
 
       <div className="grid h-full w-2/3 grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-3">
         {productsData.map((product: Product) => (
           <div key={product._id}>
             <ProductCard
+              key={product._id}
               imgPRM={product.imageURLs[0]}
-              imgSID={product.imageURLs[2]}
-              productName={product.fulhausProductName}
-              prize={product.retailPrice}
+              imgSID={product.imageURLs[1]}
+              fulhausProductName={product.fulhausProductName}
+              retailPrice={product.retailPrice}
+              _id={product._id}
             />
           </div>
         ))}
       </div>
+      <Cart />
     </main>
   )
 }
