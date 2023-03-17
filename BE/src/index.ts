@@ -1,12 +1,12 @@
 import express from "express";
 import mongoose, { ConnectOptions } from "mongoose";
 import dotenv from "dotenv";
-import acronymRoutes from "./acronymRoutes";
+import acronymRoutes from "./routes/acronymRoutes";
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3500;
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
 if (!MONGODB_URI) {
@@ -24,7 +24,6 @@ const connectToMongoDB = async () => {
     await mongoose.connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useFindAndModify: false,
     } as ConnectOptions);
     console.log("Connected to MongoDB");
   } catch (error) {

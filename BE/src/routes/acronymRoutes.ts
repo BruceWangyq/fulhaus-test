@@ -1,5 +1,5 @@
 import express from "express";
-import Acronym from "./acronymModel";
+import Acronym from "../models/acronymModel";
 
 const router = express.Router();
 
